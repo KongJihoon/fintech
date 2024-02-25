@@ -1,0 +1,9 @@
+### 회원가입 (고객)
+POST http://localhost:8080/user/signUp
+Content-Type: application/json
+
+{
+  "userName": "masjdhask",
+  "phone": "010-4592-1719",
+  "password": "asdsadsa"
+}
