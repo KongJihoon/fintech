@@ -18,7 +18,8 @@
 
 ## 1️⃣ ERD
 
-![img](./docs/ERD01.png)
+![img](https://github.com/KongJihoon/fintech/assets/138794635/f2aa6b9f-3ff9-4b47-aa06-e2c1921eb728)
+
 
 ## 2️⃣ 기능 사항
 
