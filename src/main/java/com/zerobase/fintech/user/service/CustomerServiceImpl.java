@@ -20,7 +20,9 @@ public class CustomerServiceImpl implements CustomerService {
     private final PasswordEncoder encoder;
     private final CustomerRepository customerRepository;
 
-
+    /**
+     * 회원 가입
+     */
     @Override
     @Transactional
     public CustomerDto signUp(SignUpDto user) {
