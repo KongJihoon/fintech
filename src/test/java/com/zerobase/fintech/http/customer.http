@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "userName": "masjdhask",
-  "phone": "010-4592-1719",
+  "phone": "010-4592-1718",
   "password": "asdsadsa"
 }
 
@@ -13,6 +13,17 @@ POST http://localhost:8080/api/user/signIn
 Content-Type: application/json
 
 {
-  "phone": "010-4592-171",
+  "phone": "010-4592-1718",
   "password": "asdsadsa"
+}
+
+### 계좌 생성
+POST http://localhost:8080/api/account/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5Mi0xNzE4IiwianRpIjoiRVlUK0VpZXpaR0Y3a3hZRWQvM1dMOEdGU21kWXUwQVliSmVFbkVmaS9OND0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5MTA3NTk4LCJleHAiOjE3MDkxMTExOTh9.qvB100bWfUbJe9t9nyl-Rt25VY29MUnkjXfluRzjXGc
+
+{
+  "userId": 2,
+  "initialBalance": 1502,
+  "accountName": "12323"
 }
