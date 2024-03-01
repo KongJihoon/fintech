@@ -20,10 +20,25 @@ Content-Type: application/json
 ### 계좌 생성
 POST http://localhost:8080/api/account/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5Mi0xNzE4IiwianRpIjoiRVlUK0VpZXpaR0Y3a3hZRWQvM1dMOEdGU21kWXUwQVliSmVFbkVmaS9OND0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5MTA3NTk4LCJleHAiOjE3MDkxMTExOTh9.qvB100bWfUbJe9t9nyl-Rt25VY29MUnkjXfluRzjXGc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5Mi0xNzE4IiwianRpIjoidDZqcmw1MWVzc2gvMkUrRlJMdEhsK3ZyaThHQ2FzaFZwQ2toRFRkY1ErQT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5Mjg4MzA0LCJleHAiOjE3MDkyOTE5MDR9.NaonDUi6MUdoRl3H57cVgEtjCekt5Eq53ZhsmBeFRoE
 
 {
-  "userId": 2,
-  "initialBalance": 1502,
-  "accountName": "12323"
+  "userId": 1,
+  "initialBalance": 1000,
+  "accountName": "1232345"
+}
+
+### 계좌 조회
+GET http://localhost:8080/api/account/info?userId=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5Mi0xNzE4IiwianRpIjoiSXdOTjJ1MG83dzAwbHZiazBIWElYZnZ4K2lCWXRCMERXb3ZZdnZ0RHFlbz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5Mjg1OTUxLCJleHAiOjE3MDkyODk1NTF9.dazXLv2XKjRZGlN_7YB0JyoebiKfxf3tAeTuPRHThI0
+
+### 계좌 해지
+DELETE http://localhost:8080/api/account/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5Mi0xNzE4IiwianRpIjoiSXdOTjJ1MG83dzAwbHZiazBIWElYZnZ4K2lCWXRCMERXb3ZZdnZ0RHFlbz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5Mjg1OTUxLCJleHAiOjE3MDkyODk1NTF9.dazXLv2XKjRZGlN_7YB0JyoebiKfxf3tAeTuPRHThI0
+
+{
+  "userId": 1,
+  "accountNumber": "33300000001"
 }

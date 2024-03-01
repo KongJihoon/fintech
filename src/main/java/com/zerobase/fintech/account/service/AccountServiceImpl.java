@@ -5,16 +5,23 @@ import com.zerobase.fintech.account.domain.entity.Account;
 import com.zerobase.fintech.account.domain.repository.AccountRepository;
 import com.zerobase.fintech.account.dto.AccountDto;
 import com.zerobase.fintech.account.dto.CreateAccount;
+import com.zerobase.fintech.account.type.AccountStatus;
 import com.zerobase.fintech.global.exception.CustomException;
 import com.zerobase.fintech.user.domain.entity.Customer;
 import com.zerobase.fintech.user.domain.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static com.zerobase.fintech.account.type.AccountStatus.IN_USE;
+import static com.zerobase.fintech.account.type.AccountStatus.UNREGISTERED;
 import static com.zerobase.fintech.account.type.Bank.ZERO_BASE;
-import static com.zerobase.fintech.global.type.ErrorCode.MAX_ACCOUNT_PER_USER_10;
-import static com.zerobase.fintech.global.type.ErrorCode.USER_NOT_FOUND;
+import static com.zerobase.fintech.global.type.ErrorCode.*;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +31,7 @@ public class AccountServiceImpl implements AccountService{
     private final CustomerRepository customerRepository;
 
     @Override
+    @Transactional
     public AccountDto createAccount(CreateAccount.Request request) {
         Customer customer = getCustomer(request.getUserId());
 
@@ -42,6 +50,53 @@ public class AccountServiceImpl implements AccountService{
                         .build()));
     }
 
+    @Override
+    @Transactional
+    public List<AccountDto> getAccountByUserId(Long userId) {
+
+        Customer customer = getCustomer(userId);
+
+        List<Account> accounts = accountRepository.findByCustomer(customer);
+
+
+        return accounts.stream()
+                .map(AccountDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public AccountDto deleteAccount(Long userId, String accountNumber) {
+
+        Customer customer = getCustomer(userId);
+
+        Account account = accountRepository.findByAccountNumber(accountNumber)
+                .orElseThrow(() -> new CustomException(ACCOUNT_NOT_FOUND));
+
+        validateDeleteAccount(customer, account);
+
+        account.setAccountStatus(UNREGISTERED);
+        account.setUnRegisteredAt(LocalDateTime.now());
+
+        accountRepository.save(account);
+
+        return AccountDto.fromEntity(account);
+    }
+
+    private void validateDeleteAccount(Customer customer, Account account){
+
+        if(!Objects.equals(customer.getId(), account.getCustomer().getId())){
+            throw new CustomException(USER_ACCOUNT_UN_MATCH);
+        }
+        if(account.getAccountStatus() == AccountStatus.UNREGISTERED){
+            throw new CustomException(ACCOUNT_ALREADY_UNREGISTERED);
+        }
+        if(account.getBalance() > 0){
+            throw new CustomException(BALANCE_NOT_EMPTY);
+        }
+    }
+
+
     private String makeAccountNumber(){
         return accountRepository.findFirstByOrderByIdDesc()
                 .map(account -> (Long.parseLong(account.getAccountNumber()) + 1) + "")
@@ -59,6 +114,7 @@ public class AccountServiceImpl implements AccountService{
             throw new CustomException(MAX_ACCOUNT_PER_USER_10);
         }
     }
+
 
 
 }

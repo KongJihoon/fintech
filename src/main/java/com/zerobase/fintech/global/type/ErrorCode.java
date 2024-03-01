@@ -24,7 +24,11 @@ public enum ErrorCode {
     /**
      * account
      */
-    MAX_ACCOUNT_PER_USER_10(HttpStatus.BAD_REQUEST.value(), "사용자 최대 계좌는 10개 입니다.");
+    MAX_ACCOUNT_PER_USER_10(HttpStatus.BAD_REQUEST.value(), "사용자 최대 계좌는 10개 입니다."),
+    USER_ACCOUNT_UN_MATCH(HttpStatus.BAD_REQUEST.value(), "고객과 계좌가 일치하지 않습니다."),
+    ACCOUNT_NOT_FOUND(HttpStatus.BAD_REQUEST.value(), "계좌를 찾을 수 없습니다."),
+    ACCOUNT_ALREADY_UNREGISTERED(HttpStatus.BAD_REQUEST.value(), "이미 해지된 계좌입니다."),
+    BALANCE_NOT_EMPTY(HttpStatus.BAD_REQUEST.value(), "계좌의 잔액이 남아있습니다.");
 
 
     private final int status;
