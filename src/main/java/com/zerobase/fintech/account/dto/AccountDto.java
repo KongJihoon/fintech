@@ -26,7 +26,7 @@ public class AccountDto {
 
     private LocalDateTime unRegisteredAt;
 
-    public static AccountDto fromEntity(Account account){
+    public static AccountDto fromEntity(Account account) {
         return AccountDto.builder()
                 .userId(account.getId())
                 .accountNumber(account.getAccountNumber())

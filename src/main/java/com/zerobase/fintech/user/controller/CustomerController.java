@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -23,7 +25,7 @@ public class CustomerController {
     private final TokenProvider tokenProvider;
 
     @PostMapping("/user/signUp")
-    public ResponseEntity<?> customerSignUp(@RequestBody SignUpDto sign){
+    public ResponseEntity<?> customerSignUp(@RequestBody @Valid SignUpDto sign) {
 
         return ResponseEntity.ok().body(
                 sign.from(customerService.signUp(sign))
@@ -31,7 +33,7 @@ public class CustomerController {
     }
 
     @PostMapping("/user/signIn")
-    public ResponseEntity<?> customerSignIn(@RequestBody SignInDto sign){
+    public ResponseEntity<?> customerSignIn(@RequestBody @Valid SignInDto sign) {
         Customer customer = authService.authenticatedCustomer(sign);
 
         return ResponseEntity.ok(

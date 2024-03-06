@@ -12,7 +12,7 @@ public class CreateAccount {
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class Request{
+    public static class Request {
         @NotNull
         private Long userId;
 
@@ -34,7 +34,7 @@ public class CreateAccount {
         private Bank bank;
         private LocalDateTime createdAt;
 
-        public static Response from(AccountDto accountDto){
+        public static Response from(AccountDto accountDto) {
             return Response.builder()
                     .accountId(accountDto.getUserId())
                     .accountNumber(accountDto.getAccountNumber())

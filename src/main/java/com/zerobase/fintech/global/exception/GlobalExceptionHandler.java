@@ -16,21 +16,21 @@ import static com.zerobase.fintech.global.type.ErrorCode.INVALID_SERVER_ERROR;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(CustomException.class)
-    public ErrorResponse customExceptionHandler(CustomException e){
+    public ErrorResponse customExceptionHandler(CustomException e) {
         return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ErrorResponse dataIntegrityViolationException(DataIntegrityViolationException e){
+    public ErrorResponse dataIntegrityViolationException(DataIntegrityViolationException e) {
         return new ErrorResponse(INVALID_REQUEST, INVALID_REQUEST.getDescription());
     }
     @ExceptionHandler(UsernameNotFoundException.class)
-    public ErrorResponse userNameNotFoundException(UsernameNotFoundException e){
+    public ErrorResponse userNameNotFoundException(UsernameNotFoundException e) {
         return new ErrorResponse(INVALID_REQUEST, INVALID_REQUEST.getDescription());
     }
 
 //    @ExceptionHandler(Exception.class)
-//    public ErrorResponse exceptionHandler(Exception e){
+//    public ErrorResponse exceptionHandler(Exception e) {
 //        return new ErrorResponse(INVALID_SERVER_ERROR, INVALID_SERVER_ERROR.getDescription());
 //    }
 

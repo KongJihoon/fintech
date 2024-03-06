@@ -1,6 +1,7 @@
 package com.zerobase.fintech.account.dto;
 
 
+import com.zerobase.fintech.account.type.Bank;
 import lombok.*;
 
 @Getter
@@ -11,6 +12,7 @@ import lombok.*;
 public class AccountInfo {
 
     private String accountNumber;
+    private Bank bank;
     private Long balance;
 
 }

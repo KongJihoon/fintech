@@ -21,7 +21,7 @@ public class CustomerDto {
 
     private String password;
 
-    public static CustomerDto fromEntity(Customer customer){
+    public static CustomerDto fromEntity(Customer customer) {
 
         return CustomerDto.builder()
                 .id(customer.getId())
