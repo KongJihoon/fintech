@@ -14,7 +14,7 @@ public class SignUpDto {
     private String phone;
     private String password;
 
-    public SignUpDto from(CustomerDto customerDto){
+    public SignUpDto from(CustomerDto customerDto) {
         return SignUpDto.builder()
                 .userName(customerDto.getUserName())
                 .phone(customerDto.getPhone())

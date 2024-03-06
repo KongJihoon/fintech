@@ -30,7 +30,7 @@ public class AuthService implements UserDetailsService {
     /**
      * 고객 정보 확인, 패스워드 일치 확인
      */
-    public Customer authenticatedCustomer(SignInDto sign){
+    public Customer authenticatedCustomer(SignInDto sign) {
         Customer customer = checkUserPhone(sign.getPhone());
 
         if(!passwordEncoder.matches(sign.getPassword(), customer.getPassword())){
@@ -44,7 +44,7 @@ public class AuthService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
 
-        if(customerRepository.existsByPhone(phone)){
+        if(customerRepository.existsByPhone(phone)) {
             Customer customer = checkUserPhone(phone);
 
             return createUserDetail(customer.getPhone(), customer.getPassword());
@@ -53,14 +53,14 @@ public class AuthService implements UserDetailsService {
         throw new UsernameNotFoundException("User not found with phone" + phone);
     }
 
-    private UserDetails createUserDetail(String phone, String password){
+    private UserDetails createUserDetail(String phone, String password) {
         return User.withUsername(phone)
                 .password(passwordEncoder.encode(password))
                 .roles(String.valueOf(UserType.CUSTOMER))
                 .build();
     }
 
-    private Customer checkUserPhone(String phone){
+    private Customer checkUserPhone(String phone) {
 
         return customerRepository.findByPhone(phone)
                 .orElseThrow(() -> new CustomException(USER_NOT_FOUND));

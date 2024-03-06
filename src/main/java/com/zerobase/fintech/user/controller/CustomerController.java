@@ -8,14 +8,18 @@ import com.zerobase.fintech.user.domain.entity.Customer;
 import com.zerobase.fintech.user.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@Validated
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -23,7 +27,7 @@ public class CustomerController {
     private final TokenProvider tokenProvider;
 
     @PostMapping("/user/signUp")
-    public ResponseEntity<?> customerSignUp(@RequestBody SignUpDto sign){
+    public ResponseEntity<?> customerSignUp(@Valid @RequestBody  SignUpDto sign) {
 
         return ResponseEntity.ok().body(
                 sign.from(customerService.signUp(sign))
@@ -31,7 +35,7 @@ public class CustomerController {
     }
 
     @PostMapping("/user/signIn")
-    public ResponseEntity<?> customerSignIn(@RequestBody SignInDto sign){
+    public ResponseEntity<?> customerSignIn(@Valid @RequestBody SignInDto sign) {
         Customer customer = authService.authenticatedCustomer(sign);
 
         return ResponseEntity.ok(

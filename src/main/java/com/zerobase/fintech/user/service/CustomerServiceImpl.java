@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         boolean exists = customerRepository.existsByPhone(user.getPhone());
 
-        if(exists){
+        if (exists) {
             throw new CustomException(ALREADY_EXIST_USER);
         }
         user.setPassword(encoder.encode(user.getPassword()));

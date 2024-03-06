@@ -38,7 +38,7 @@ public class TokenProvider {
      * @param userType 유저 타입
      * @return jwt 생성
      */
-    public String createToken(String userEmail, UserType userType){
+    public String createToken(String userEmail, UserType userType) {
         SecretKey key = getSecretKey();
 
         Claims claims = Jwts.claims().setSubject(userEmail).setId(generateToken());
@@ -52,18 +52,18 @@ public class TokenProvider {
                 .signWith(SignatureAlgorithm.HS256, key) // 사용할 암호화 알고리즘, 비밀키
                 .compact();
     }
-    public Authentication getAuthentication(String token){
+    public Authentication getAuthentication(String token) {
         UserDetails userDetails = authService.loadUserByUsername(this.getUserName(token));
 
         return new UsernamePasswordAuthenticationToken(
                 userDetails,"",userDetails.getAuthorities());
     }
 
-    public String getUserName(String token){
+    public String getUserName(String token) {
         return parseClaims(token).getSubject();
     }
 
-    public boolean validateToken(String token){
+    public boolean validateToken(String token) {
         try {
             Claims claims = parseClaims(token);
             return !claims.getExpiration().before(new Date());
@@ -80,14 +80,14 @@ public class TokenProvider {
         }
     }
 
-    private Claims parseClaims(String token){
+    private Claims parseClaims(String token) {
         SecretKey key = getSecretKey();
 
         return Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
     }
 
 
-    private SecretKey getSecretKey(){
+    private SecretKey getSecretKey() {
         return new SecretKeySpec(Base64.getDecoder()
                 .decode(this.secretKey), "HmacSHA256");
     }
@@ -98,7 +98,7 @@ public class TokenProvider {
      * @return 인코딩 키
      */
 
-    private String generateToken(){
+    private String generateToken() {
         UUID uuid = UUID.randomUUID();
         String token = uuid.toString();
 
@@ -108,7 +108,7 @@ public class TokenProvider {
 
             return Base64.getEncoder().encodeToString(bytes);
 
-        }catch (NoSuchAlgorithmException e){
+        } catch (NoSuchAlgorithmException e){
             throw new RuntimeException(e);
         }
     }

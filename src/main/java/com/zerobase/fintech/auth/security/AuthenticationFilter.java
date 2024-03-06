@@ -36,7 +36,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
 
         // 토큰 유효성 검사
-        if(StringUtils.hasText(token) && this.tokenProvider.validateToken(token)){
+        if (StringUtils.hasText(token) && this.tokenProvider.validateToken(token)) {
             Authentication authentication = this.tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             log.info(String.format("[%s] -> %s", this.tokenProvider.getUserName(token), request.getRequestURI()));
@@ -44,9 +44,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private String resolveTokenFromRequest(HttpServletRequest request){
+    private String resolveTokenFromRequest(HttpServletRequest request) {
         String token = request.getHeader(this.tokenHeader);
-        if(!ObjectUtils.isEmpty(token) && token.startsWith(this.tokenPrefix)){
+        if (!ObjectUtils.isEmpty(token) && token.startsWith(this.tokenPrefix)) {
             return token.substring(this.tokenPrefix.length());
         }
         return null;
