@@ -3,6 +3,7 @@ POST http://localhost:8080/api/user/signUp
 Content-Type: application/json
 
 {
+
   "userName": "공지훈",
   "phone": "010-4599-1719",
   "password": "1111"

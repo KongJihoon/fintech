@@ -107,7 +107,6 @@ public class TokenProvider {
             byte[] bytes = messageDigest.digest(token.getBytes());
 
             return Base64.getEncoder().encodeToString(bytes);
-
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }

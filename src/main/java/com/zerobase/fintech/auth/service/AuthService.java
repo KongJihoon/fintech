@@ -44,7 +44,9 @@ public class AuthService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
 
+
         if (customerRepository.existsByPhone(phone)) {
+
             Customer customer = checkUserPhone(phone);
 
             return createUserDetail(customer.getPhone(), customer.getPassword());
