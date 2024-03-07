@@ -33,7 +33,7 @@ public class AuthService implements UserDetailsService {
     public Customer authenticatedCustomer(SignInDto sign) {
         Customer customer = checkUserPhone(sign.getPhone());
 
-        if(!passwordEncoder.matches(sign.getPassword(), customer.getPassword())){
+        if (!passwordEncoder.matches(sign.getPassword(), customer.getPassword())) {
             throw new CustomException(PASSWORD_NOT_MATCH);
         }
         return customer;
@@ -44,7 +44,9 @@ public class AuthService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
 
-        if(customerRepository.existsByPhone(phone)) {
+
+        if (customerRepository.existsByPhone(phone)) {
+
             Customer customer = checkUserPhone(phone);
 
             return createUserDetail(customer.getPhone(), customer.getPassword());

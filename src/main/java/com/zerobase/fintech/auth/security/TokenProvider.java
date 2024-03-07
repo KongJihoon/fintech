@@ -67,15 +67,15 @@ public class TokenProvider {
         try {
             Claims claims = parseClaims(token);
             return !claims.getExpiration().before(new Date());
-        }catch (ExpiredJwtException e){
+        } catch (ExpiredJwtException e) {
             throw new JwtException("토큰 인증 시간이 만료 되었습니다.");
-        }catch (UnsupportedJwtException e){
+        } catch (UnsupportedJwtException e) {
             throw new JwtException("지원하지 않는 토큰입니다.");
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new JwtException("잘못된 토큰 입니다.");
-        }catch (MalformedJwtException e){
+        } catch (MalformedJwtException e) {
             throw new JwtException("토큰 유형이 잘못되었습니다.");
-        }catch (JwtException e){
+        } catch (JwtException e) {
             throw new JwtException(e.getMessage());
         }
     }
@@ -107,8 +107,7 @@ public class TokenProvider {
             byte[] bytes = messageDigest.digest(token.getBytes());
 
             return Base64.getEncoder().encodeToString(bytes);
-
-        } catch (NoSuchAlgorithmException e){
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }

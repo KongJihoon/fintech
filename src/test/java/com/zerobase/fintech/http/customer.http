@@ -3,9 +3,10 @@ POST http://localhost:8080/api/user/signUp
 Content-Type: application/json
 
 {
-  "userName": "",
-  "phone": "010-4592-1719",
-  "password": "rhdwlgns12"
+
+  "userName": "공지훈",
+  "phone": "010-4599-1719",
+  "password": "1111"
 }
 
 ### 로그인 (고객)
@@ -13,6 +14,45 @@ POST http://localhost:8080/api/user/signIn
 Content-Type: application/json
 
 {
-  "phone": "010-4592-1719",
-  "password": "rhdwlgns12"
+  "phone": "010-4599-1719",
+  "password": "1111"
+}
+
+### 계좌 생성
+POST http://localhost:8080/api/account/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5OS0xNzE5IiwianRpIjoiY2dOb1FYWk9BSGhOa1Y0V1doSE55eWRnTXdoODh6eFVHVmR5VElTOVZTZz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5NzM1OTUwLCJleHAiOjE3MDk3Mzk1NTB9.7BmtmaS4E77BpRRa6DPij4mfYYKn1AQwhIKNUAU2eOk
+
+{
+  "userId": 1,
+  "initialBalance": 10000,
+  "accountName": "공지훈의 계좌3"
+}
+
+### 계좌 조회
+GET http://localhost:8080/api/account/info?userId=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5OS0xNzE5IiwianRpIjoiY2dOb1FYWk9BSGhOa1Y0V1doSE55eWRnTXdoODh6eFVHVmR5VElTOVZTZz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5NzM1OTUwLCJleHAiOjE3MDk3Mzk1NTB9.7BmtmaS4E77BpRRa6DPij4mfYYKn1AQwhIKNUAU2eOk
+
+### 계좌 해지
+DELETE http://localhost:8080/api/account/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5Mi0xNzE4IiwianRpIjoiK1NPajh5WW4yR1FHS2RNVUFLcjFQSGRLV1duNHhZb0hLZnNMZFNMOWJ0dz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5MzU3MDYxLCJleHAiOjE3MDkzNjA2NjF9.wp6hnHuMoLG5aOBvAfKnspGergsytzfiSxM_gDbRF9E
+
+{
+  "userId": 1,
+  "accountNumber": "33300000002"
+}
+
+### 타 은행 계좌 등록
+POST http://localhost:8080/api/account/other
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5OS0xNzE5IiwianRpIjoiZUQ1M1JYejBYYjdPL2Qya3RQMzNQeVhrZW01TEtJT3FFUThJUHkzZjdGdz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5NzM1NDkxLCJleHAiOjE3MDk3MzkwOTF9.RUnaFXVwjcIZe7CfVKfYuLHWWHKbq1mIZP2nyLqHGC0
+
+{
+  "userId": 1,
+  "bank": "OOP",
+  "accountName": "OOP의 계쫘",
+  "accountNumber": "33300000111",
+  "initialBalance": 2000
 }

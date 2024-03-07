@@ -27,7 +27,9 @@ public class CustomerController {
     private final TokenProvider tokenProvider;
 
     @PostMapping("/user/signUp")
-    public ResponseEntity<?> customerSignUp(@Valid @RequestBody  SignUpDto sign) {
+
+    public ResponseEntity<?> customerSignUp(@RequestBody @Valid SignUpDto sign) {
+
 
         return ResponseEntity.ok().body(
                 sign.from(customerService.signUp(sign))
@@ -35,7 +37,8 @@ public class CustomerController {
     }
 
     @PostMapping("/user/signIn")
-    public ResponseEntity<?> customerSignIn(@Valid @RequestBody SignInDto sign) {
+
+    public ResponseEntity<?> customerSignIn(@RequestBody @Valid SignInDto sign) {
         Customer customer = authService.authenticatedCustomer(sign);
 
         return ResponseEntity.ok(
