@@ -3,9 +3,8 @@ POST http://localhost:8080/api/user/signUp
 Content-Type: application/json
 
 {
-
   "userName": "공지훈",
-  "phone": "010-4599-1719",
+  "phone": "010-1111-2222",
   "password": "1111"
 }
 
@@ -14,25 +13,35 @@ POST http://localhost:8080/api/user/signIn
 Content-Type: application/json
 
 {
-  "phone": "010-4599-1719",
+  "phone": "010-1111-2222",
   "password": "1111"
 }
 
 ### 계좌 생성
-POST http://localhost:8080/api/account/create
+POST http://localhost:8080/api/account
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5OS0xNzE5IiwianRpIjoiY2dOb1FYWk9BSGhOa1Y0V1doSE55eWRnTXdoODh6eFVHVmR5VElTOVZTZz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5NzM1OTUwLCJleHAiOjE3MDk3Mzk1NTB9.7BmtmaS4E77BpRRa6DPij4mfYYKn1AQwhIKNUAU2eOk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiQlJ4ZzM5MTNXeDE0S3JQV1JBcHdsajdVNzAxeEVMbjRJQXdWSmxLdzJDND0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5ODgyNTU0LCJleHAiOjE3MDk4ODYxNTR9.OQElRYcO_N7qCPx1shvpw5IU2GUiVjKsMSJXosc6EJY
 
 {
   "userId": 1,
   "initialBalance": 10000,
-  "accountName": "공지훈의 계좌3"
+  "accountName": "공지훈의 계좌2"
 }
-
 ### 계좌 조회
 GET http://localhost:8080/api/account/info?userId=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5OS0xNzE5IiwianRpIjoiY2dOb1FYWk9BSGhOa1Y0V1doSE55eWRnTXdoODh6eFVHVmR5VElTOVZTZz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5NzM1OTUwLCJleHAiOjE3MDk3Mzk1NTB9.7BmtmaS4E77BpRRa6DPij4mfYYKn1AQwhIKNUAU2eOk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiQlJ4ZzM5MTNXeDE0S3JQV1JBcHdsajdVNzAxeEVMbjRJQXdWSmxLdzJDND0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5ODgyNTU0LCJleHAiOjE3MDk4ODYxNTR9.OQElRYcO_N7qCPx1shvpw5IU2GUiVjKsMSJXosc6EJY
+
+
+### 계좌 검색
+GET http://localhost:8080/api/account/search
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiQlJ4ZzM5MTNXeDE0S3JQV1JBcHdsajdVNzAxeEVMbjRJQXdWSmxLdzJDND0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5ODgyNTU0LCJleHAiOjE3MDk4ODYxNTR9.OQElRYcO_N7qCPx1shvpw5IU2GUiVjKsMSJXosc6EJY
+
+{
+  "bank": "OOP",
+  "accountNumber": "33300000111"
+}
 
 ### 계좌 해지
 DELETE http://localhost:8080/api/account/delete
@@ -47,7 +56,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5Mi0xNzE4IiwianRpI
 ### 타 은행 계좌 등록
 POST http://localhost:8080/api/account/other
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5OS0xNzE5IiwianRpIjoiZUQ1M1JYejBYYjdPL2Qya3RQMzNQeVhrZW01TEtJT3FFUThJUHkzZjdGdz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5NzM1NDkxLCJleHAiOjE3MDk3MzkwOTF9.RUnaFXVwjcIZe7CfVKfYuLHWWHKbq1mIZP2nyLqHGC0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiQlJ4ZzM5MTNXeDE0S3JQV1JBcHdsajdVNzAxeEVMbjRJQXdWSmxLdzJDND0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5ODgyNTU0LCJleHAiOjE3MDk4ODYxNTR9.OQElRYcO_N7qCPx1shvpw5IU2GUiVjKsMSJXosc6EJY
 
 {
   "userId": 1,
