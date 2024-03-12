@@ -11,6 +11,7 @@ import lombok.*;
 @Builder
 public class AccountInfo {
 
+    private String userName;
     private String accountNumber;
     private Bank bank;
     private Long balance;

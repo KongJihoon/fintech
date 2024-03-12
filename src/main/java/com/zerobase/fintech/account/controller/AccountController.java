@@ -1,10 +1,7 @@
 package com.zerobase.fintech.account.controller;
 
 
-import com.zerobase.fintech.account.dto.AccountInfo;
-import com.zerobase.fintech.account.dto.CreateAccount;
-import com.zerobase.fintech.account.dto.DeleteAccount;
-import com.zerobase.fintech.account.dto.OtherBankAccountCreate;
+import com.zerobase.fintech.account.dto.*;
 import com.zerobase.fintech.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -59,6 +56,20 @@ public class AccountController {
         return accountService.getAccountByUserId(userId)
                 .stream().map(accountDto ->
                         AccountInfo.builder()
+                                .userName(accountDto.getUserName())
+                                .accountNumber(accountDto.getAccountNumber())
+                                .bank(accountDto.getBank())
+                                .balance(accountDto.getBalance()).build())
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/account/search")
+    @PreAuthorize("hasRole('CUSTOMER')")
+    public List<AccountInfo> SearchAccount(@RequestBody SearchAccount.Request request) {
+        return accountService.getAccountByCustomer(request)
+                .stream().map(accountDto ->
+                        AccountInfo.builder()
+                                .userName(accountDto.getUserName())
                                 .accountNumber(accountDto.getAccountNumber())
                                 .bank(accountDto.getBank())
                                 .balance(accountDto.getBalance()).build())

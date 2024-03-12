@@ -16,6 +16,8 @@ public class AccountDto {
 
     private Long userId;
 
+    private String userName;
+
     private String accountNumber;
 
     private Long balance;
@@ -29,6 +31,7 @@ public class AccountDto {
     public static AccountDto fromEntity(Account account) {
         return AccountDto.builder()
                 .userId(account.getId())
+                .userName(account.getCustomer().getUsername())
                 .accountNumber(account.getAccountNumber())
                 .balance(account.getBalance())
                 .bank(account.getBank())

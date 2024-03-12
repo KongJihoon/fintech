@@ -6,6 +6,7 @@ import com.zerobase.fintech.account.domain.repository.AccountRepository;
 import com.zerobase.fintech.account.dto.AccountDto;
 import com.zerobase.fintech.account.dto.CreateAccount;
 import com.zerobase.fintech.account.dto.OtherBankAccountCreate;
+import com.zerobase.fintech.account.dto.SearchAccount;
 import com.zerobase.fintech.account.type.AccountStatus;
 import com.zerobase.fintech.account.type.Bank;
 import com.zerobase.fintech.global.exception.CustomException;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.zerobase.fintech.account.type.AccountStatus.IN_USE;
@@ -62,6 +64,25 @@ public class AccountServiceImpl implements AccountService{
 
 
         return accounts.stream()
+                .map(AccountDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public List<AccountDto> getAccountByCustomer(SearchAccount.Request request) {
+
+        validateRequest(request);
+
+        List<Account> byBankAndAccountNumber = accountRepository.findByBankAndAccountNumber(request.getBank(), request.getAccountNumber());
+
+
+        if (byBankAndAccountNumber.isEmpty()) {
+            throw new CustomException(USER_NOT_FOUND);
+        }
+
+
+        return byBankAndAccountNumber.stream()
                 .map(AccountDto::fromEntity)
                 .collect(Collectors.toList());
     }
@@ -144,6 +165,11 @@ public class AccountServiceImpl implements AccountService{
     private void validateCreateAccount(Customer customer){
         if(accountRepository.countByCustomer(customer) >= 10){
             throw new CustomException(MAX_ACCOUNT_PER_USER_10);
+        }
+    }
+    private void validateRequest(SearchAccount.Request request) {
+        if (request.getBank() == null || request.getAccountNumber() == null) {
+            throw new CustomException(EMPTY_REQUEST);
         }
     }
 
