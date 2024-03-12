@@ -30,13 +30,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpI
 ### 계좌 조회
 GET http://localhost:8080/api/account/info?userId=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiQlJ4ZzM5MTNXeDE0S3JQV1JBcHdsajdVNzAxeEVMbjRJQXdWSmxLdzJDND0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5ODgyNTU0LCJleHAiOjE3MDk4ODYxNTR9.OQElRYcO_N7qCPx1shvpw5IU2GUiVjKsMSJXosc6EJY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiWXR2SzJUQXI1bDMyNVAwUGpyeW9rNTZ0L3JmUnZUZVBvRDBBQjlXZzFyRT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzEwMjMzOTg0LCJleHAiOjE3MTAyMzc1ODR9.4kkjb7-uua9ws1IOzYG0NbaKrpSB_6KkV-FsfEMh5lk
 
 
 ### 계좌 검색
 GET http://localhost:8080/api/account/search
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiQlJ4ZzM5MTNXeDE0S3JQV1JBcHdsajdVNzAxeEVMbjRJQXdWSmxLdzJDND0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5ODgyNTU0LCJleHAiOjE3MDk4ODYxNTR9.OQElRYcO_N7qCPx1shvpw5IU2GUiVjKsMSJXosc6EJY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiWXB0d0R3bGFIQk5la1l3Ujh3bDZPbTZ2NUZseERTNDVXL2xWMFExWmRmTT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzEwMjMwODA3LCJleHAiOjE3MTAyMzQ0MDd9.gBJMXpJ8txmY9YWfSf1kuyh1xKCQKlFQOEELc-0VoEA
 
 {
   "bank": "OOP",
@@ -44,13 +44,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpI
 }
 
 ### 계좌 해지
-DELETE http://localhost:8080/api/account/delete
+DELETE http://localhost:8080/api/account
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtNDU5Mi0xNzE4IiwianRpIjoiK1NPajh5WW4yR1FHS2RNVUFLcjFQSGRLV1duNHhZb0hLZnNMZFNMOWJ0dz0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzA5MzU3MDYxLCJleHAiOjE3MDkzNjA2NjF9.wp6hnHuMoLG5aOBvAfKnspGergsytzfiSxM_gDbRF9E
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiWXB0d0R3bGFIQk5la1l3Ujh3bDZPbTZ2NUZseERTNDVXL2xWMFExWmRmTT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzEwMjMwODA3LCJleHAiOjE3MTAyMzQ0MDd9.gBJMXpJ8txmY9YWfSf1kuyh1xKCQKlFQOEELc-0VoEA
 
 {
   "userId": 1,
-  "accountNumber": "33300000002"
+  "accountNumber": "33300000001"
 }
 
 ### 타 은행 계좌 등록
@@ -64,4 +64,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpI
   "accountName": "OOP의 계쫘",
   "accountNumber": "33300000111",
   "initialBalance": 2000
+}
+
+### 입금 기능
+PUT http://localhost:8080/api/transaction
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMTAtMTExMS0yMjIyIiwianRpIjoiWXR2SzJUQXI1bDMyNVAwUGpyeW9rNTZ0L3JmUnZUZVBvRDBBQjlXZzFyRT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNzEwMjMzOTg0LCJleHAiOjE3MTAyMzc1ODR9.4kkjb7-uua9ws1IOzYG0NbaKrpSB_6KkV-FsfEMh5lk
+
+{
+  "accountNumber": "33300000001",
+  "depositName": "공지훈",
+  "balance": 10000
 }
