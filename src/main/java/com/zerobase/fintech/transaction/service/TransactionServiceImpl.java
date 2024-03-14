@@ -2,18 +2,13 @@ package com.zerobase.fintech.transaction.service;
 
 import com.zerobase.fintech.account.domain.entity.Account;
 import com.zerobase.fintech.account.domain.repository.AccountRepository;
-import com.zerobase.fintech.account.type.AccountStatus;
 import com.zerobase.fintech.global.exception.CustomException;
-import com.zerobase.fintech.global.type.ErrorCode;
 import com.zerobase.fintech.transaction.domain.entity.Transaction;
 import com.zerobase.fintech.transaction.domain.repository.TransactionRepository;
 import com.zerobase.fintech.transaction.dto.DepositDto;
-import com.zerobase.fintech.transaction.type.TransactionType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
 
 import static com.zerobase.fintech.account.type.AccountStatus.UNREGISTERED;
 import static com.zerobase.fintech.global.type.ErrorCode.ACCOUNT_NOT_FOUND;
@@ -35,11 +30,11 @@ public class TransactionServiceImpl implements TransactionService{
         Account setAccount = accountRepository.findByAccountNumber(request.getAccountNumber())
                 .orElseThrow(() -> new CustomException(ACCOUNT_NOT_FOUND));
 
-        if (setAccount.getAccountStatus().equals(UNREGISTERED)) {
+        if (setAccount.isUnregistered()) {
             throw new CustomException(UNREGISTERED_ACCOUNT);
         }
 
-        setAccount.setBalance(setAccount.getBalance() + request.getBalance());
+        setAccount.increaseBalance(request.getBalance());
 
         transactionRepository.save(Transaction.builder().
                 account(setAccount).
@@ -50,11 +45,6 @@ public class TransactionServiceImpl implements TransactionService{
 
 
 
-        return DepositDto.Response.builder()
-                .accountNumber(request.getAccountNumber())
-                .depositName(request.getDepositName())
-                .balance(request.getBalance())
-                .transactionAt(LocalDateTime.now())
-                .build();
+        return DepositDto.Response.response(request);
     }
 }

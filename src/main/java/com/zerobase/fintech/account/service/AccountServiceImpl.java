@@ -72,7 +72,7 @@ public class AccountServiceImpl implements AccountService{
     @Transactional
     public List<AccountDto> getAccountByCustomer(SearchAccount.Request request) {
 
-        validateRequest(request);
+
 
         List<Account> byBankAndAccountNumber = accountRepository.findByBankAndAccountNumber(request.getBank(), request.getAccountNumber());
 
@@ -167,11 +167,7 @@ public class AccountServiceImpl implements AccountService{
             throw new CustomException(MAX_ACCOUNT_PER_USER_10);
         }
     }
-    private void validateRequest(SearchAccount.Request request) {
-        if (request.getBank() == null || request.getAccountNumber() == null) {
-            throw new CustomException(EMPTY_REQUEST);
-        }
-    }
+
 
 
 

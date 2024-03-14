@@ -12,6 +12,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+import static com.zerobase.fintech.account.type.AccountStatus.UNREGISTERED;
+
 @Entity
 @Builder
 @NoArgsConstructor
@@ -47,5 +49,14 @@ public class Account extends BaseEntity {
     private Long balance;
 
     private LocalDateTime unRegisteredAt;
+
+
+    public void increaseBalance(Long balance){
+        this.balance += balance;
+    }
+
+    public boolean isUnregistered() {
+        return this.accountStatus.equals(UNREGISTERED);
+    }
 
 }

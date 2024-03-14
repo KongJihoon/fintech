@@ -52,7 +52,7 @@ public class AccountController {
 
     @GetMapping("/account/info")
     @PreAuthorize("hasRole('CUSTOMER')")
-    public List<AccountInfo> getAccountByUserId( @RequestParam("userId") Long userId) {
+    public List<AccountInfo> getAccountByUserId( @RequestParam("userId") @Valid Long userId) {
         return accountService.getAccountByUserId(userId)
                 .stream().map(accountDto ->
                         AccountInfo.builder()
@@ -65,7 +65,7 @@ public class AccountController {
 
     @GetMapping("/account/search")
     @PreAuthorize("hasRole('CUSTOMER')")
-    public List<AccountInfo> SearchAccount(@RequestBody SearchAccount.Request request) {
+    public List<AccountInfo> SearchAccount(@RequestBody @Valid SearchAccount.Request request) {
         return accountService.getAccountByCustomer(request)
                 .stream().map(accountDto ->
                         AccountInfo.builder()
