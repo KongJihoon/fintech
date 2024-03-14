@@ -31,7 +31,9 @@ public enum ErrorCode {
     BALANCE_NOT_EMPTY(HttpStatus.BAD_REQUEST.value(), "계좌의 잔액이 남아있습니다."),
     ONLY_REGISTERED_OTHER_BANK(HttpStatus.BAD_REQUEST.value(), "등록은 다른 은행의 계좌만 가능합니다."),
     ALREADY_EXIST_ACCOUNT_NUMBER(HttpStatus.BAD_REQUEST.value(), "이미 존재하는 계좌 번호입니다."),
-    EMPTY_REQUEST(HttpStatus.BAD_REQUEST.value(), "요청 값을 제대로 입력해주세요.");
+    EMPTY_REQUEST(HttpStatus.BAD_REQUEST.value(), "요청 값을 제대로 입력해주세요."),
+    UNREGISTERED_ACCOUNT(HttpStatus.BAD_REQUEST.value(), "해지된 계좌입니다.");
+
 
 
     private final int status;
