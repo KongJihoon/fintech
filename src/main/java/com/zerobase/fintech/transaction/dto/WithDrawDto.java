@@ -43,13 +43,13 @@ public class WithDrawDto {
 
         private LocalDateTime transactionAt;
 
-        public static WithDrawDto.Response response(WithDrawDto.Request request) {
+        public static WithDrawDto.Response from(TransactionDto transactionDto) {
 
 
             return Response.builder()
-                    .withDrawName(request.withDrawName)
-                    .accountNumber(request.accountNumber)
-                    .balance(request.balance)
+                    .withDrawName(transactionDto.getWithdrawName())
+                    .accountNumber(transactionDto.getAccountNumber())
+                    .balance(transactionDto.getBalance())
                     .transactionAt(LocalDateTime.now())
                     .build();
 

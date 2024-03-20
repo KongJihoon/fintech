@@ -32,8 +32,9 @@ public enum ErrorCode {
     ONLY_REGISTERED_OTHER_BANK(HttpStatus.BAD_REQUEST.value(), "등록은 다른 은행의 계좌만 가능합니다."),
     ALREADY_EXIST_ACCOUNT_NUMBER(HttpStatus.BAD_REQUEST.value(), "이미 존재하는 계좌 번호입니다."),
     EMPTY_REQUEST(HttpStatus.BAD_REQUEST.value(), "요청 값을 제대로 입력해주세요."),
-    UNREGISTERED_ACCOUNT(HttpStatus.BAD_REQUEST.value(), "해지된 계좌입니다.");
-
+    UNREGISTERED_ACCOUNT(HttpStatus.BAD_REQUEST.value(), "해지된 계좌입니다."),
+    BALANCE_NOT_ENOUGH(HttpStatus.BAD_REQUEST.value(), "잔액이 부족합니다."),
+    TRANSACTION_TYPE_NOT_EXIST(HttpStatus.BAD_REQUEST.value(), "거래 종류가 존재하지 않습니다.");
 
 
     private final int status;

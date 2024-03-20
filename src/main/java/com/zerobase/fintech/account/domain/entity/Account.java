@@ -51,11 +51,11 @@ public class Account extends BaseEntity {
     private LocalDateTime unRegisteredAt;
 
 
-    public void depositBalance(Long balance){
+    public void increaseBalance(Long balance){
         this.balance += balance;
     }
 
-    public void withDrawBalance(Long balance){
+    public void reductionBalance(Long balance){
         this.balance -= balance;
     }
 

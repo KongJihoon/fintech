@@ -1,13 +1,18 @@
 package com.zerobase.fintech.transaction.service;
 
-import com.zerobase.fintech.transaction.dto.DepositDto;
-import com.zerobase.fintech.transaction.dto.WithDrawDto;
+import com.zerobase.fintech.transaction.dto.*;
+
+import java.util.List;
 
 public interface TransactionService {
 
-    DepositDto.Response deposit(DepositDto.Request request);
+    TransactionDto deposit(DepositDto.Request request);
 
 
-    WithDrawDto.Response withdraw(WithDrawDto.Request request);
+    TransactionDto withdraw(WithDrawDto.Request request);
+
+    TransactionDto remittance(RemittanceDto.Request request);
+
+    List<TransactionDto> getTransaction(TransactionListDto.Request request);
 
 }

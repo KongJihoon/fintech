@@ -40,13 +40,13 @@ public class DepositDto {
 
         private LocalDateTime transactionAt;
 
-        public static Response response(DepositDto.Request request) {
+        public static Response from(TransactionDto transactionDto) {
 
             return DepositDto.Response.builder()
-                    .accountNumber(request.getAccountNumber())
-                    .depositName(request.getDepositName())
-                    .balance(request.getBalance())
-                    .transactionAt(LocalDateTime.now())
+                    .accountNumber(transactionDto.getAccountNumber())
+                    .depositName(transactionDto.getDepositName())
+                    .balance(transactionDto.getBalance())
+                    .transactionAt(transactionDto.getTransactionAt())
                     .build();
         }
 
