@@ -3,19 +3,15 @@ package com.zerobase.fintech.transaction.service;
 import com.zerobase.fintech.account.domain.entity.Account;
 import com.zerobase.fintech.account.domain.repository.AccountRepository;
 import com.zerobase.fintech.global.exception.CustomException;
-import com.zerobase.fintech.global.type.ErrorCode;
 import com.zerobase.fintech.transaction.domain.entity.Transaction;
 import com.zerobase.fintech.transaction.domain.repository.TransactionRepository;
 import com.zerobase.fintech.transaction.dto.*;
-import com.zerobase.fintech.user.domain.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +24,6 @@ public class TransactionServiceImpl implements TransactionService{
 
     private final AccountRepository accountRepository;
     private final TransactionRepository transactionRepository;
-    private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
 
 

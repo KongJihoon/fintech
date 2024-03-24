@@ -2,6 +2,7 @@ package com.zerobase.fintech.transaction.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zerobase.fintech.account.type.Bank;
+import com.zerobase.fintech.global.exception.CustomException;
 import com.zerobase.fintech.global.type.ErrorCode;
 import com.zerobase.fintech.transaction.domain.entity.Transaction;
 import com.zerobase.fintech.transaction.type.TransactionType;
@@ -69,9 +70,9 @@ public class TransactionDto {
 
             case REMITTANCE:
                 return receivedName;
-        }
 
-        return ErrorCode.TRANSACTION_TYPE_NOT_EXIST.getDescription();
+            default: throw new CustomException(ErrorCode.TRANSACTION_TYPE_NOT_EXIST);
+        }
 
     }
 
