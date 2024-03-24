@@ -55,6 +55,10 @@ public class Account extends BaseEntity {
         this.balance += balance;
     }
 
+    public void reductionBalance(Long balance){
+        this.balance -= balance;
+    }
+
     public boolean isUnregistered() {
         return this.accountStatus.equals(UNREGISTERED);
     }

@@ -1,7 +1,9 @@
 package com.zerobase.fintech.transaction.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zerobase.fintech.account.domain.entity.Account;
+import com.zerobase.fintech.account.type.Bank;
 import com.zerobase.fintech.transaction.type.TransactionType;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -39,6 +41,8 @@ public class Transaction {
     private String receivedName;
 
     private String receivedAccount;
+
+    private Bank receivedBank;
 
     @CreatedDate
     private LocalDateTime transactionAt;

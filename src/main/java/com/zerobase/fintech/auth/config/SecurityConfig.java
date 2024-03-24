@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .antMatchers("api/user/**").permitAll()
                 .antMatchers("api/account/**").hasRole("CUSTOMER")
+                .antMatchers("api/transaction").hasRole("CUSTOMER")
                 .and()
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

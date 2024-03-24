@@ -4,6 +4,6 @@ public enum TransactionType {
 
     DEPOSIT,
     WITHDRAW,
-    RECEIVED
+    REMITTANCE
 
 }

@@ -6,7 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
-public class DepositDto {
+public class WithDrawDto {
 
     @Getter
     @Setter
@@ -14,13 +14,16 @@ public class DepositDto {
     @NoArgsConstructor
     public static class Request {
 
+        @NotBlank(message = "출금자명을 입력해주세요.")
+        private String withDrawName;
+
         @NotBlank(message = "계좌번호를 입력해주세요.")
         private String accountNumber;
 
-        @NotBlank(message = "입금자명을 입력해주세요.")
-        private String depositName;
+        @NotBlank(message = "비밀번호를 입력해주세요.")
+        private String password;
 
-        @Min(value = 1000L, message = "최소 입금금액은 1000원 입니다.")
+        @Min(value = 1000L, message = "최소 출금금액은 1000원 입니다.")
         private Long balance;
 
     }
@@ -32,27 +35,26 @@ public class DepositDto {
     @Builder
     public static class Response {
 
-        private String accountNumber;
+        private String withDrawName;
 
-        private String depositName;
+        private String accountNumber;
 
         private Long balance;
 
         private LocalDateTime transactionAt;
 
-        public static Response from(TransactionDto transactionDto) {
+        public static WithDrawDto.Response from(TransactionDto transactionDto) {
 
-            return DepositDto.Response.builder()
+
+            return Response.builder()
+                    .withDrawName(transactionDto.getWithdrawName())
                     .accountNumber(transactionDto.getAccountNumber())
-                    .depositName(transactionDto.getDepositName())
                     .balance(transactionDto.getBalance())
-                    .transactionAt(transactionDto.getTransactionAt())
+                    .transactionAt(LocalDateTime.now())
                     .build();
+
         }
 
 
     }
-
-
-
 }
